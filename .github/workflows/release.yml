@@ -11,7 +11,20 @@ permissions:
   contents: write # required to create the release and upload assets
 
 jobs:
-  build:
+  # The upload action below uploads to an EXISTING release, so we must create
+  # the release first; the build matrix then attaches assets to it.
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: taiki-e/create-gh-release-action@v1
+        with:
+          title: ccalc $tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  upload-assets:
+    needs: create-release
     name: ${{ matrix.target }}
     runs-on: ${{ matrix.os }}
     strategy:
