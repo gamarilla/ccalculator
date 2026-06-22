@@ -1,0 +1,11 @@
+[package]
+name = "ccalc-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Core evaluation engine for Console Calculator: high-precision arithmetic, units, bases, variables and functions."
+
+[dependencies]
+astro-float = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }

@@ -1,0 +1,25 @@
+[workspace]
+resolver = "2"
+members = ["crates/core", "crates/cli"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["ccalc contributors"]
+license = "MIT"
+repository = "https://github.com/gamarilla/ccalculator"
+
+[workspace.dependencies]
+astro-float = "0.9"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+anyhow = "1"
+directories = "5"
+
+# Lean, fast single-binary release builds.
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
