@@ -38,10 +38,42 @@ AI assistants can use it too — while keeping the original's feel intact.
 | **MCP support (optional)** | `ccalc --mcp` exposes the engine as MCP tools for AI assistants. |
 | **Fully tested** | Unit tests for the engine + end‑to‑end tests driving the binary and the MCP server. |
 
-## Install / build
+## Install
+
+### Download a prebuilt binary (recommended)
+
+Grab the archive for your platform from the
+[**latest release**](https://github.com/gamarilla/ccalculator/releases/latest),
+unpack it, and run `ccalc` — it's a single self‑contained binary, no runtime
+needed.
+
+| Platform | Asset |
+| --- | --- |
+| Linux x86‑64 | `ccalc-<version>-x86_64-unknown-linux-musl.tar.gz` |
+| Linux ARM64 | `ccalc-<version>-aarch64-unknown-linux-musl.tar.gz` |
+| Windows x86‑64 | `ccalc-<version>-x86_64-pc-windows-msvc.zip` |
+| macOS Intel | `ccalc-<version>-x86_64-apple-darwin.tar.gz` |
+| macOS Apple Silicon | `ccalc-<version>-aarch64-apple-darwin.tar.gz` |
+
+Each archive ships with a `.sha256` checksum file. The Linux builds are
+statically linked (musl), so they run on any distro.
 
 ```bash
-# build from source (produces a single binary at target/release/ccalc)
+# Example: Linux x86-64
+tar -xzf ccalc-*-x86_64-unknown-linux-musl.tar.gz
+./ccalc
+```
+
+### Install with Cargo
+
+```bash
+cargo install --git https://github.com/gamarilla/ccalculator ccalc
+```
+
+### Build from source
+
+```bash
+# produces a single binary at target/release/ccalc
 cargo build --release
 ./target/release/ccalc
 ```
